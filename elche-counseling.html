@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elche Fintari — Youth Counseling</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage:#7a9e7e; --sage-light:#a8c5ac; --sage-dark:#4f7254;
+  --cream:#faf6f0; --warm:#f0e8d8; --text:#2a2a2a; --muted:#7a7267;
+  --accent:#c47c4a; --blue:#6b8cba; --rose:#b06b8c;
+  --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,246,240,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(122,158,126,0.15);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--sage-dark);}
+.nav-logo span{color:var(--accent);font-style:italic;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:0.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--sage-dark);}
+.nav-cta{background:var(--sage)!important;color:white!important;padding:9px 20px;border-radius:50px;}
+.nav-cta:hover{background:var(--sage-dark)!important;}
+@media(max-width:768px){.nav-links{display:none;}nav{padding:16px 20px;}}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;right:-100px;top:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(122,158,126,0.18) 0%,transparent 70%);border-radius:50%;animation:float 8s ease-in-out infinite;}
+.hero::after{content:'';position:absolute;left:-80px;bottom:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(196,124,74,0.12) 0%,transparent 70%);border-radius:50%;animation:float 10s ease-in-out infinite reverse;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-28px)}}
+.hero-text{position:relative;z-index:2;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--warm);border:1px solid rgba(122,158,126,0.3);padding:6px 16px;border-radius:50px;font-size:0.78rem;font-weight:500;color:var(--sage-dark);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:28px;animation:fadeUp 0.8s ease both;}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--sage);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,4.5rem);font-weight:300;line-height:1.1;margin-bottom:24px;animation:fadeUp 0.8s 0.1s ease both;}
+.hero h1 em{font-style:italic;color:var(--sage-dark);}
+.hero h1 strong{font-weight:600;color:var(--accent);}
+.hero-desc{font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:40px;font-weight:300;animation:fadeUp 0.8s 0.2s ease both;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp 0.8s 0.3s ease both;}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--sage-dark);color:white;padding:16px 32px;border-radius:50px;text-decoration:none;font-size:0.95rem;font-weight:500;transition:all 0.3s;box-shadow:0 8px 24px rgba(79,114,84,0.3);}
+.btn-primary:hover{background:var(--sage);transform:translateY(-2px);box-shadow:0 12px 32px rgba(79,114,84,0.4);}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--sage);color:var(--sage-dark);padding:16px 32px;border-radius:50px;text-decoration:none;font-size:0.95rem;font-weight:500;transition:all 0.3s;}
+.btn-secondary:hover{background:var(--sage);color:white;transform:translateY(-2px);}
+.hero-visual{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;animation:fadeUp 0.8s 0.4s ease both;}
+.hero-card{background:white;border-radius:24px;padding:40px;box-shadow:0 24px 60px rgba(0,0,0,0.08);max-width:380px;width:100%;position:relative;}
+.hero-card::before{content:'✦';position:absolute;top:-16px;right:32px;font-size:2rem;color:var(--accent);}
+.hero-card-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--sage-dark);margin-bottom:4px;}
+.hero-card-title{font-size:0.82rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:24px;}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.stat-box{background:var(--cream);border-radius:14px;padding:16px;text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--sage-dark);}
+.stat-label{font-size:0.75rem;color:var(--muted);margin-top:2px;}
+.availability-badge{background:linear-gradient(135deg,var(--sage-light),var(--sage));color:white;border-radius:12px;padding:14px 18px;font-size:0.83rem;line-height:1.6;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:100px 20px 60px;}.hero-visual{display:none;}}
+
+/* SECTIONS */
+.section{padding:96px 48px;}
+.section-label{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:12px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;line-height:1.2;margin-bottom:16px;}
+.section-title em{font-style:italic;color:var(--sage-dark);}
+.section-sub{font-size:1rem;color:var(--muted);line-height:1.7;max-width:560px;font-weight:300;margin-bottom:48px;}
+@media(max-width:768px){.section{padding:64px 20px;}}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;}
+.service-card{background:white;border-radius:20px;padding:36px 30px;border:1px solid rgba(122,158,126,0.12);transition:all 0.3s;position:relative;overflow:hidden;}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage-light),var(--sage-dark));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.09);}
+.service-card:hover::after{transform:scaleX(1);}
+.service-icon{width:52px;height:52px;background:var(--warm);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:20px;}
+.service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:10px;}
+.service-card p{font-size:0.87rem;color:var(--muted);line-height:1.7;font-weight:300;}
+.service-tag{display:inline-block;margin-top:14px;background:var(--cream);color:var(--sage-dark);padding:4px 12px;border-radius:50px;font-size:0.75rem;font-weight:500;border:1px solid rgba(122,158,126,0.25);}
+
+/* TIPS & ACTIVITIES — TABBED */
+.tips-section{background:var(--warm);padding:96px 48px;}
+@media(max-width:768px){.tips-section{padding:64px 20px;}}
+.topic-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;}
+.topic-tab{display:flex;align-items:center;gap:8px;padding:10px 22px;border-radius:50px;border:1.5px solid rgba(122,158,126,0.3);background:white;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;color:var(--muted);transition:all 0.25s;}
+.topic-tab:hover{border-color:var(--sage);color:var(--sage-dark);}
+.topic-tab.active{background:var(--sage-dark);color:white;border-color:var(--sage-dark);box-shadow:0 4px 16px rgba(79,114,84,0.3);}
+
+.topic-panel{display:none !important;}
+.topic-panel.active{display:block !important;animation:fadeUp 0.35s ease both;}
+
+/* PANEL LAYOUT */
+.panel-top{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px;}
+@media(max-width:768px){.panel-top{grid-template-columns:1fr;}}
+
+.panel-intro{background:white;border-radius:20px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.panel-badge{display:inline-flex;align-items:center;gap:8px;background:var(--cream);border-radius:50px;padding:5px 14px;font-size:0.74rem;font-weight:500;color:var(--sage-dark);margin-bottom:16px;border:1px solid rgba(122,158,126,0.25);}
+.panel-intro h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:12px;}
+.panel-intro p{font-size:0.87rem;color:var(--muted);line-height:1.75;font-weight:300;}
+
+.sign-box{background:white;border-radius:20px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.sign-box h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:18px;color:var(--text);}
+.sign-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.sign-list li{display:flex;align-items:flex-start;gap:10px;font-size:0.86rem;color:var(--text);line-height:1.6;font-weight:300;}
+.sign-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;}
+
+/* TIPS + ACTIVITIES BOTTOM */
+.panel-bottom{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+@media(max-width:768px){.panel-bottom{grid-template-columns:1fr;}}
+
+.tips-card{background:white;border-radius:20px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.tips-card-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--warm);}
+.tips-card-icon{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--sage-light),var(--sage));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.tips-card-icon.orange{background:linear-gradient(135deg,#f0c8a0,var(--accent));}
+.tips-card-icon.blue{background:linear-gradient(135deg,#b0c8e8,var(--blue));}
+.tips-card-icon.rose{background:linear-gradient(135deg,#e0b0c8,var(--rose));}
+.tips-card h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;}
+.tips-card h4 span{display:block;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:400;color:var(--muted);}
+
+.tip-items{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.tip-item{display:flex;gap:10px;font-size:0.86rem;color:var(--text);line-height:1.65;font-weight:300;}
+.tip-arrow{color:var(--sage);font-weight:600;flex-shrink:0;}
+
+/* ACTIVITY CARDS */
+.activities-card{background:white;border-radius:20px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.activities-card-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--warm);}
+.act-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.act-icon.green{background:linear-gradient(135deg,#c8e8c0,#6aaa60);}
+.act-icon.purple{background:linear-gradient(135deg,#d0c0e8,#8060aa);}
+.act-icon.yellow{background:linear-gradient(135deg,#f0e0a0,#c8a030);}
+.act-icon.teal{background:linear-gradient(135deg,#a0e0d8,#2098a0);}
+
+.activities-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.activity-pill{background:var(--cream);border-radius:12px;padding:12px 14px;display:flex;align-items:flex-start;gap:8px;border:1px solid rgba(122,158,126,0.12);transition:all 0.2s;}
+.activity-pill:hover{background:white;box-shadow:0 4px 12px rgba(0,0,0,0.07);transform:translateY(-2px);}
+.activity-pill .a-icon{font-size:1.1rem;flex-shrink:0;line-height:1.4;}
+.activity-pill .a-text{font-size:0.82rem;line-height:1.5;color:var(--text);font-weight:400;}
+.activity-pill .a-text strong{display:block;font-size:0.8rem;font-weight:500;color:var(--sage-dark);}
+.activity-pill .a-text span{color:var(--muted);font-size:0.76rem;}
+
+/* WHEN TO SEEK */
+.seek-strip{margin-top:28px;background:linear-gradient(135deg,rgba(79,114,84,0.08),rgba(196,124,74,0.08));border-radius:16px;padding:24px 28px;border:1px solid rgba(122,158,126,0.2);display:flex;align-items:flex-start;gap:16px;}
+.seek-strip .si{font-size:1.5rem;flex-shrink:0;}
+.seek-strip h5{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;margin-bottom:6px;}
+.seek-strip p{font-size:0.84rem;color:var(--muted);line-height:1.65;font-weight:300;}
+.seek-strip a{color:var(--sage-dark);font-weight:500;text-decoration:none;}
+.seek-strip a:hover{text-decoration:underline;}
+
+/* QUOTE */
+.quote-section{background:var(--sage-dark);padding:80px 48px;text-align:center;}
+.quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.5rem);font-weight:300;font-style:italic;color:rgba(255,255,255,0.9);max-width:700px;margin:0 auto 24px;line-height:1.4;}
+.quote-attr{font-size:0.85rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;}
+
+/* BOOK */
+.book-section{padding:96px 48px;background:white;}
+@media(max-width:768px){.book-section{padding:64px 20px;}}
+.book-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+@media(max-width:900px){.book-layout{grid-template-columns:1fr;gap:40px;}}
+.schedule-cards{display:flex;flex-direction:column;gap:16px;margin-bottom:32px;}
+.schedule-card{display:flex;align-items:center;gap:20px;background:var(--cream);border-radius:16px;padding:20px 24px;border:1px solid rgba(122,158,126,0.15);}
+.schedule-dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.weekday .schedule-dot{background:rgba(122,158,126,0.15);}
+.weekend .schedule-dot{background:rgba(196,124,74,0.12);}
+.schedule-info h4{font-weight:500;font-size:0.95rem;margin-bottom:2px;}
+.schedule-info p{font-size:0.83rem;color:var(--muted);}
+.schedule-time{margin-left:auto;background:white;border-radius:10px;padding:8px 16px;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--sage-dark);white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.weekend .schedule-time{color:var(--accent);}
+.process-steps{margin-top:8px;}
+.process-steps h4{font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:16px;}
+.step{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--sage-dark);color:white;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:600;flex-shrink:0;margin-top:1px;}
+.step p{font-size:0.85rem;color:var(--muted);line-height:1.6;font-weight:300;}
+.step p strong{color:var(--text);font-weight:500;}
+
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:0.78rem;font-weight:500;color:var(--text);letter-spacing:0.04em;margin-bottom:7px;text-transform:uppercase;}
+.form-group select,.form-group input,.form-group textarea{width:100%;padding:13px 16px;border:1.5px solid rgba(122,158,126,0.25);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);background:var(--cream);transition:border-color 0.2s;outline:none;}
+.form-group select:focus,.form-group input:focus,.form-group textarea:focus{border-color:var(--sage);background:white;}
+.form-group textarea{min-height:90px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:500px){.form-row{grid-template-columns:1fr;}}
+
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:#25D366;color:white;padding:17px;border-radius:14px;font-size:1rem;font-weight:500;cursor:pointer;border:none;text-decoration:none;transition:all 0.3s;box-shadow:0 8px 24px rgba(37,211,102,0.3);font-family:'DM Sans',sans-serif;margin-top:4px;}
+.wa-btn:hover{background:#20b858;transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,0.4);}
+.wa-btn svg{width:22px;height:22px;fill:white;flex-shrink:0;}
+
+footer{background:var(--text);color:rgba(255,255,255,0.6);padding:48px;text-align:center;}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:white;font-weight:600;margin-bottom:6px;}
+footer p{font-size:0.85rem;margin-bottom:4px;}
+footer a{color:var(--sage-light);text-decoration:none;}
+@media(max-width:768px){footer{padding:40px 20px;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Elche <span>Fintari</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tips">Tips & Activities</a></li>
+    <li><a href="#book">Schedule</a></li>
+    <li><a href="#book" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">Online Youth Counseling · Ages 10–18</div>
+    <h1>Your growth<br><em>journey</em> starts<br><strong>here.</strong></h1>
+    <p class="hero-desc">Private, compassionate online counseling to help young people build confidence, navigate academics, develop lasting personality, and plan for a fulfilling future.</p>
+    <div class="hero-btns">
+      <a href="#book" class="btn-primary">📅 Book a Session</a>
+      <a href="#tips" class="btn-secondary">Explore Tips & Activities →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-name">Elche Fintari</div>
+      <div class="hero-card-title">Youth Counselor &amp; Coach</div>
+      <div class="hero-stats">
+        <div class="stat-box"><div class="stat-num">10–18</div><div class="stat-label">Age Group</div></div>
+        <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Focus Areas</div></div>
+        <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">Private &amp; Safe</div></div>
+        <div class="stat-box"><div class="stat-num">Online</div><div class="stat-label">Anywhere</div></div>
+      </div>
+      <div class="availability-badge">🟢 <strong>Weekdays:</strong> 4 PM – 8 PM &nbsp;|&nbsp; <strong>Weekend:</strong> 1 PM – 8 PM</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-label">What I Offer</div>
+  <h2 class="section-title">Counseling for <em>every</em> aspect of growing up</h2>
+  <p class="section-sub">Each young person is unique. My sessions are fully personalized, private, and conducted online — making it easy and safe to open up.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>Academic Counseling</h3>
+      <p>Overcoming study challenges, improving focus, managing exam anxiety, and building effective learning habits for better academic results.</p>
+      <span class="service-tag">Study Skills · Motivation</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌱</div>
+      <h3>Personality Development</h3>
+      <p>Building self-confidence, emotional intelligence, resilience, and a positive self-image to thrive in every area of life.</p>
+      <span class="service-tag">Self-Esteem · Confidence</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>Social Development</h3>
+      <p>Improving communication skills, navigating friendships, dealing with peer pressure, and building healthy social relationships.</p>
+      <span class="service-tag">Communication · Friendships</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <h3>Career Counseling</h3>
+      <p>Discovering passions, exploring career paths, setting long-term goals, and developing a clear vision for the future from an early age.</p>
+      <span class="service-tag">Future Planning · Goals</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS & ACTIVITIES -->
+<section class="tips-section" id="tips">
+  <div class="section-label">Tips, Guidance &amp; Activities</div>
+  <h2 class="section-title">Choose a topic to <em>explore</em></h2>
+  <p class="section-sub">Each tab includes warning signs to watch for, practical daily tips, and hands-on activities you can start today.</p>
+
+  <div class="topic-tabs">
+    <button class="topic-tab active" data-tab="academic" type="button"><span>📚</span> Academic</button>
+    <button class="topic-tab" data-tab="personality" type="button"><span>🌱</span> Personality</button>
+    <button class="topic-tab" data-tab="social" type="button"><span>🤝</span> Social</button>
+    <button class="topic-tab" data-tab="career" type="button"><span>🚀</span> Career</button>
+    <button class="topic-tab" data-tab="parents" type="button"><span>👨‍👩‍👧</span> For Parents</button>
+  </div>
+
+  <!-- ═══ ACADEMIC ═══ -->
+  <div class="topic-panel active" id="panel-academic">
+    <div class="panel-top">
+      <div class="panel-intro">
+        <div class="panel-badge">📚 Academic Challenges</div>
+        <h3>When studying feels impossible</h3>
+        <p>Academic pressure is one of the most common stressors among students aged 10–18. Difficulty concentrating, falling grades, or simply dreading school can have many causes — and all of them are solvable with the right support.</p>
+        <p style="margin-top:12px;">The goal isn't perfection. It's progress, self-belief, and finding a study approach that fits <em>you</em>.</p>
+      </div>
+      <div class="sign-box">
+        <h4>⚠️ Signs You May Need Support</h4>
+        <ul class="sign-list">
+          <li><span class="sign-dot"></span>Consistently avoiding homework or school-related tasks</li>
+          <li><span class="sign-dot"></span>Feeling anxious or having panic attacks before exams</li>
+          <li><span class="sign-dot"></span>Grades dropping despite trying hard</li>
+          <li><span class="sign-dot"></span>Difficulty concentrating for more than 5–10 minutes</li>
+          <li><span class="sign-dot"></span>Feeling like you're "not smart enough" or comparing yourself to others</li>
+          <li><span class="sign-dot"></span>Physical symptoms (headaches, nausea) before school or tests</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel-bottom">
+      <div class="tips-card">
+        <div class="tips-card-header">
+          <div class="tips-card-icon">💡</div>
+          <h4>Daily Tips<span>Practical habits for students</span></h4>
+        </div>
+        <ul class="tip-items">
+          <li><span class="tip-arrow">→</span>Use the <strong>Pomodoro method</strong>: 25 min focused study + 5 min break. After 4 rounds, take a longer 20-min break.</li>
+          <li><span class="tip-arrow">→</span>Write out your goals for each study session before starting — even just one specific thing to finish.</li>
+          <li><span class="tip-arrow">→</span>Teach what you've learned to a friend, sibling, or even your pet — if you can explain it, you know it.</li>
+          <li><span class="tip-arrow">→</span>Keep your phone in another room during study time. One glance costs 23 minutes of refocus time on average.</li>
+          <li><span class="tip-arrow">→</span>Review notes within 24 hours of a class — memory retention improves dramatically.</li>
+          <li><span class="tip-arrow">→</span>Eat a light snack before studying. A hungry brain can't focus well.</li>
+          <li><span class="tip-arrow">→</span>Celebrate small wins — finishing a chapter, understanding a concept. Progress matters.</li>
+        </ul>
+      </div>
+      <div class="activities-card">
+        <div class="activities-card-header">
+          <div class="act-icon green">🎯</div>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;">Try These Activities<span style="display:block;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:400;color:var(--muted);">Actionable exercises to do today</span></h4>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-pill"><span class="a-icon">📓</span><div class="a-text"><strong>Brain Dump Journal</strong><span>Write everything stressing you about school for 5 mins, then close the book.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🗺️</span><div class="a-text"><strong>Mind Map a Topic</strong><span>Draw branches of one subject you struggle with — it activates visual memory.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🎤</span><div class="a-text"><strong>Record Yourself</strong><span>Read your notes aloud and record it. Play it back while doing chores.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🏆</span><div class="a-text"><strong>Weekly Goal Chart</strong><span>Write 3 small academic goals each Monday. Check off daily.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🤓</span><div class="a-text"><strong>Flashcard Flip</strong><span>Make 10 flashcards per topic. Quiz yourself before bed for 10 min.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">📊</span><div class="a-text"><strong>Progress Tracker</strong><span>Chart your grades over time. Seeing improvement is incredibly motivating.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="seek-strip">
+      <span class="si">💬</span>
+      <div><h5>When to book a session</h5><p>If academic stress is affecting your sleep, appetite, or mood — or if you've tried but can't seem to improve — a counseling session can help you identify the root cause and build a personalized plan. <a href="#book">Book your session →</a></p></div>
+    </div>
+  </div>
+
+  <!-- ═══ PERSONALITY ═══ -->
+  <div class="topic-panel" id="panel-personality">
+    <div class="panel-top">
+      <div class="panel-intro">
+        <div class="panel-badge">🌱 Personality Development</div>
+        <h3>Growing into the best version of you</h3>
+        <p>The teenage years are when identity forms. Low self-esteem, emotional outbursts, or feeling "different" are normal — but with the right tools, this phase becomes a powerful launchpad for a confident, emotionally healthy adult.</p>
+        <p style="margin-top:12px;">True personality growth is about understanding yourself deeply, not changing who you are.</p>
+      </div>
+      <div class="sign-box">
+        <h4>⚠️ Signs You May Need Support</h4>
+        <ul class="sign-list">
+          <li><span class="sign-dot"></span>Frequently saying "I'm not good at anything" or "I hate myself"</li>
+          <li><span class="sign-dot"></span>Extreme mood swings that feel uncontrollable</li>
+          <li><span class="sign-dot"></span>Avoiding new experiences due to fear of failure or judgment</li>
+          <li><span class="sign-dot"></span>Seeking constant approval from peers to feel okay about yourself</li>
+          <li><span class="sign-dot"></span>Feeling numb, empty, or disconnected from your own life</li>
+          <li><span class="sign-dot"></span>Difficulty identifying or expressing emotions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel-bottom">
+      <div class="tips-card">
+        <div class="tips-card-header">
+          <div class="tips-card-icon orange">💡</div>
+          <h4>Daily Tips<span>For building your inner strength</span></h4>
+        </div>
+        <ul class="tip-items">
+          <li><span class="tip-arrow">→</span>Write down <strong>3 things you like about yourself</strong> every morning — not achievements, but qualities.</li>
+          <li><span class="tip-arrow">→</span>When you make a mistake, say: "I'm learning" instead of "I'm stupid" — words shape how you feel.</li>
+          <li><span class="tip-arrow">→</span>Name your emotion when it arises: "I feel anxious right now." Naming it reduces its power over you.</li>
+          <li><span class="tip-arrow">→</span>Challenge one comfort zone every week — say hi first, raise your hand in class, try something new.</li>
+          <li><span class="tip-arrow">→</span>Spend time alone doing something you love — it builds a relationship with yourself.</li>
+          <li><span class="tip-arrow">→</span>Stop comparing your chapter 1 to someone else's chapter 10. Everyone's timeline is different.</li>
+          <li><span class="tip-arrow">→</span>Notice your self-talk — would you speak to a friend that way? If not, change the tone.</li>
+        </ul>
+      </div>
+      <div class="activities-card">
+        <div class="activities-card-header">
+          <div class="act-icon purple">🎨</div>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;">Try These Activities<span style="display:block;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:400;color:var(--muted);">Exercises to know yourself better</span></h4>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-pill"><span class="a-icon">📖</span><div class="a-text"><strong>Emotion Diary</strong><span>Write your feelings each evening — what triggered them and what you did.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🪞</span><div class="a-text"><strong>Mirror Affirmations</strong><span>Say 3 positive statements to yourself in the mirror each morning for 21 days.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🎨</span><div class="a-text"><strong>Creative Expression</strong><span>Draw, paint, or collage how you see yourself — and how you want to grow.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🌡️</span><div class="a-text"><strong>Mood Weather Chart</strong><span>Rate your mood daily 1–10. Look for patterns after 2 weeks.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🧘</span><div class="a-text"><strong>5-Min Breathwork</strong><span>Inhale 4 counts, hold 4, exhale 6. Do this when overwhelmed.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">✍️</span><div class="a-text"><strong>"I Am" List</strong><span>Write 20 sentences starting with "I am…" about your values, not just roles.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="seek-strip">
+      <span class="si">💬</span>
+      <div><h5>When to book a session</h5><p>If low self-esteem, emotional struggles, or identity confusion are affecting your daily happiness — counseling offers a judgment-free space to explore and grow. <a href="#book">Book your session →</a></p></div>
+    </div>
+  </div>
+
+  <!-- ═══ SOCIAL ═══ -->
+  <div class="topic-panel" id="panel-social">
+    <div class="panel-top">
+      <div class="panel-intro">
+        <div class="panel-badge">🤝 Social Development</div>
+        <h3>Navigating friendships, conflict &amp; belonging</h3>
+        <p>Social life during adolescence can feel like a maze — peer pressure, cliques, online drama, and the deep need to belong. Learning how to connect authentically, set boundaries, and handle conflict builds skills that last a lifetime.</p>
+        <p style="margin-top:12px;">Healthy relationships start with a healthy relationship with yourself.</p>
+      </div>
+      <div class="sign-box">
+        <h4>⚠️ Signs You May Need Support</h4>
+        <ul class="sign-list">
+          <li><span class="sign-dot"></span>Feeling left out, lonely, or like you don't belong anywhere</li>
+          <li><span class="sign-dot"></span>Difficulty saying "no" and often doing things just to please others</li>
+          <li><span class="sign-dot"></span>Frequently involved in arguments or friendship drama</li>
+          <li><span class="sign-dot"></span>Being bullied or witnessing bullying and not knowing how to respond</li>
+          <li><span class="sign-dot"></span>Feeling anxious in social situations or around groups of people</li>
+          <li><span class="sign-dot"></span>Spending most of your time online because real interactions feel too hard</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel-bottom">
+      <div class="tips-card">
+        <div class="tips-card-header">
+          <div class="tips-card-icon blue">💡</div>
+          <h4>Daily Tips<span>For stronger, healthier connections</span></h4>
+        </div>
+        <ul class="tip-items">
+          <li><span class="tip-arrow">→</span>Practice <strong>active listening</strong> — put your phone down, make eye contact, and respond to what was actually said.</li>
+          <li><span class="tip-arrow">→</span>It's okay to walk away from conversations or groups that make you feel bad about yourself.</li>
+          <li><span class="tip-arrow">→</span>Practice saying "no thanks" in low-stakes situations first to build your boundary muscles.</li>
+          <li><span class="tip-arrow">→</span>When in conflict, use "I feel..." statements instead of "You always..." — it keeps conversations productive.</li>
+          <li><span class="tip-arrow">→</span>Online friendships are real, but don't let them replace face-to-face connection completely.</li>
+          <li><span class="tip-arrow">→</span>Kindness to others boosts your own mood — do one small kind act per day.</li>
+          <li><span class="tip-arrow">→</span>Quality matters more than quantity — 2 genuine friends beat 20 surface-level ones.</li>
+        </ul>
+      </div>
+      <div class="activities-card">
+        <div class="activities-card-header">
+          <div class="act-icon teal">🎭</div>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;">Try These Activities<span style="display:block;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:400;color:var(--muted);">Build your social confidence step by step</span></h4>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-pill"><span class="a-icon">🎭</span><div class="a-text"><strong>Role-Play Hard Talks</strong><span>Practice saying "no" or resolving conflict out loud with a mirror or trusted adult.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">📝</span><div class="a-text"><strong>Friendship Audit</strong><span>List your friends. Next to each: do they lift you up or bring you down?</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🙋</span><div class="a-text"><strong>Join One New Group</strong><span>A club, sport, or online community based on something you genuinely enjoy.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">💌</span><div class="a-text"><strong>Appreciation Notes</strong><span>Write a short message to someone you appreciate. It deepens bonds naturally.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">👂</span><div class="a-text"><strong>Listening Challenge</strong><span>In one conversation today, only listen and ask questions — don't share your own story.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🛑</span><div class="a-text"><strong>Boundary Practice</strong><span>Write down 3 things that cross your limits. Practice saying them out loud.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="seek-strip">
+      <span class="si">💬</span>
+      <div><h5>When to book a session</h5><p>If social anxiety, loneliness, or repeated friendship problems are draining your energy, counseling can help you understand your patterns and build meaningful connections. <a href="#book">Book your session →</a></p></div>
+    </div>
+  </div>
+
+  <!-- ═══ CAREER ═══ -->
+  <div class="topic-panel" id="panel-career">
+    <div class="panel-top">
+      <div class="panel-intro">
+        <div class="panel-badge">🚀 Career Counseling</div>
+        <h3>Planting seeds for your future today</h3>
+        <p>Career planning doesn't mean picking your job at 15. It means exploring your interests, understanding your strengths, and building skills that will open doors — no matter what path you end up choosing.</p>
+        <p style="margin-top:12px;">The best careers grow from genuine curiosity, not just grades or expectations.</p>
+      </div>
+      <div class="sign-box">
+        <h4>⚠️ Signs You May Need Support</h4>
+        <ul class="sign-list">
+          <li><span class="sign-dot"></span>Feeling lost or having no idea what you want to do with your life</li>
+          <li><span class="sign-dot"></span>Choosing a direction purely based on what parents or friends expect</li>
+          <li><span class="sign-dot"></span>Feeling unmotivated at school because it doesn't connect to your future</li>
+          <li><span class="sign-dot"></span>Having interests or passions you feel are "not a real career"</li>
+          <li><span class="sign-dot"></span>High anxiety about making the "wrong" choice about your future</li>
+          <li><span class="sign-dot"></span>Comparing your ambitions negatively to peers who seem more certain</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel-bottom">
+      <div class="tips-card">
+        <div class="tips-card-header">
+          <div class="tips-card-icon" style="background:linear-gradient(135deg,#f0d0b0,var(--accent));">💡</div>
+          <h4>Daily Tips<span>For discovering your path</span></h4>
+        </div>
+        <ul class="tip-items">
+          <li><span class="tip-arrow">→</span>Notice what topics you <strong>look up out of curiosity</strong> — your interests are career clues hiding in plain sight.</li>
+          <li><span class="tip-arrow">→</span>Talk to at least 3 adults about their careers — ask how they got there, not just what they do.</li>
+          <li><span class="tip-arrow">→</span>Don't pick a career based only on money — fulfillment and money are both important, find the overlap.</li>
+          <li><span class="tip-arrow">→</span>Develop transferable skills now: public speaking, writing, problem-solving — they work in every field.</li>
+          <li><span class="tip-arrow">→</span>It's okay to change your mind — most adults have multiple careers. Exploration is not wasted time.</li>
+          <li><span class="tip-arrow">→</span>Volunteer or shadow someone in a field you're curious about — even one day can clarify a lot.</li>
+          <li><span class="tip-arrow">→</span>Your passion + skills + what the world needs = your purpose. Keep exploring all three.</li>
+        </ul>
+      </div>
+      <div class="activities-card">
+        <div class="activities-card-header">
+          <div class="act-icon yellow">🌟</div>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;">Try These Activities<span style="display:block;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:400;color:var(--muted);">Discover your direction through doing</span></h4>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-pill"><span class="a-icon">🧩</span><div class="a-text"><strong>Strengths List</strong><span>Write 10 things you're naturally good at — include hobbies, not just school subjects.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🌐</span><div class="a-text"><strong>Career Research Hour</strong><span>Spend 1 hour researching one career per week that vaguely interests you.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🗣️</span><div class="a-text"><strong>Mini Interview</strong><span>Ask a family friend or relative: "What does your job actually feel like day to day?"</span></div></div>
+          <div class="activity-pill"><span class="a-icon">📌</span><div class="a-text"><strong>Vision Board</strong><span>Cut out images of a life you'd love — not just jobs, but feelings and experiences too.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">📚</span><div class="a-text"><strong>Read a Biography</strong><span>Read about someone in a field you admire. Pay attention to their journey, not just the result.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🎯</span><div class="a-text"><strong>5-Year Letter</strong><span>Write a letter to your 5-years-older self. What do you hope they've experienced?</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="seek-strip">
+      <span class="si">💬</span>
+      <div><h5>When to book a session</h5><p>If uncertainty about the future is causing anxiety, or if external pressure is making you feel like you can't follow your interests — a session can help you map your unique strengths to realistic paths. <a href="#book">Book your session →</a></p></div>
+    </div>
+  </div>
+
+  <!-- ═══ PARENTS ═══ -->
+  <div class="topic-panel" id="panel-parents">
+    <div class="panel-top">
+      <div class="panel-intro">
+        <div class="panel-badge">👨‍👩‍👧 For Parents &amp; Guardians</div>
+        <h3>How to support your child through this phase</h3>
+        <p>Parenting a teenager is one of the most complex and rewarding roles in the world. Your child's emotional development, academic struggles, and social growth all intersect — and your approach makes an enormous difference.</p>
+        <p style="margin-top:12px;">You don't need all the answers. You just need to stay connected.</p>
+      </div>
+      <div class="sign-box">
+        <h4>⚠️ Signs Your Child May Need Support</h4>
+        <ul class="sign-list">
+          <li><span class="sign-dot"></span>Sudden withdrawal from family, friends, or activities they used to enjoy</li>
+          <li><span class="sign-dot"></span>Significant changes in sleep, appetite, or energy levels</li>
+          <li><span class="sign-dot"></span>Expressing hopelessness, excessive self-criticism, or worthlessness</li>
+          <li><span class="sign-dot"></span>Unexplained decline in school performance or frequent absences</li>
+          <li><span class="sign-dot"></span>Increased anger, irritability, or emotional outbursts at home</li>
+          <li><span class="sign-dot"></span>Excessive screen time used to avoid real-life interactions or feelings</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel-bottom">
+      <div class="tips-card">
+        <div class="tips-card-header">
+          <div class="tips-card-icon" style="background:linear-gradient(135deg,#e0c8f0,var(--rose));">💡</div>
+          <h4>Tips for Parents<span>How to stay connected &amp; helpful</span></h4>
+        </div>
+        <ul class="tip-items">
+          <li><span class="tip-arrow">→</span>Create <strong>device-free dinner time</strong> — 20 minutes of uninterrupted conversation is more powerful than hours of parallel presence.</li>
+          <li><span class="tip-arrow">→</span>Ask open questions: "What was the best and hardest part of your day?" instead of "How was school?"</li>
+          <li><span class="tip-arrow">→</span>Validate before advising — "That sounds really hard" lands better than "Here's what you should do."</li>
+          <li><span class="tip-arrow">→</span>Don't overreact to disclosures — a calm reaction encourages your child to keep talking to you.</li>
+          <li><span class="tip-arrow">→</span>Respect their growing need for privacy — independence is healthy, withdrawal is different.</li>
+          <li><span class="tip-arrow">→</span>Share your own mistakes and struggles from your teen years — it normalizes their experience.</li>
+          <li><span class="tip-arrow">→</span>Praise effort and character, not only results — "I'm proud of how hard you tried" shapes resilience.</li>
+        </ul>
+      </div>
+      <div class="activities-card">
+        <div class="activities-card-header">
+          <div class="act-icon" style="background:linear-gradient(135deg,#f0d0e0,var(--rose));">👨‍👩‍👧</div>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;">Connection Activities<span style="display:block;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:400;color:var(--muted);">Ways to strengthen your bond</span></h4>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-pill"><span class="a-icon">🚶</span><div class="a-text"><strong>Walk & Talk</strong><span>A 15-min walk together removes the pressure of face-to-face conversation.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🍳</span><div class="a-text"><strong>Cook Together</strong><span>Side-by-side activity sparks natural, relaxed conversation without pressure.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">📝</span><div class="a-text"><strong>Letter Exchange</strong><span>Write your child a note about something you admire in them. Invite a reply.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🎮</span><div class="a-text"><strong>Try Their World</strong><span>Play a game they love or watch a show they enjoy — engagement builds trust.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">📅</span><div class="a-text"><strong>Monthly Check-In</strong><span>Set a monthly "how are we doing as a family?" conversation — no agenda, just listening.</span></div></div>
+          <div class="activity-pill"><span class="a-icon">🤲</span><div class="a-text"><strong>Ask for Their Advice</strong><span>Ask your teen's opinion on a real family decision. It builds their confidence and trust.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="seek-strip">
+      <span class="si">💬</span>
+      <div><h5>Book a session for your child</h5><p>If you're concerned about your child's wellbeing and want professional guidance, you can book a session on their behalf or arrange a parent consultation first. All sessions are completely confidential. <a href="#book">Book via WhatsApp →</a></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <p class="quote-text">"Every young person deserves a safe space to be heard, understood, and guided toward their best self."</p>
+  <div class="quote-attr">— Elche Fintari, Youth Counselor</div>
+</section>
+
+<!-- BOOK -->
+<section class="book-section" id="book">
+  <div class="book-layout">
+    <div>
+      <div class="section-label">Availability &amp; Process</div>
+      <h2 class="section-title">Book your <em>session</em></h2>
+      <p class="section-sub" style="margin-bottom:28px;">Sessions are conducted privately online. Fill in the form and connect via WhatsApp to confirm your appointment.</p>
+      <div class="schedule-cards">
+        <div class="schedule-card weekday">
+          <div class="schedule-dot">📅</div>
+          <div class="schedule-info"><h4>Weekdays</h4><p>Monday – Friday</p></div>
+          <div class="schedule-time">4 PM – 8 PM</div>
+        </div>
+        <div class="schedule-card weekend">
+          <div class="schedule-dot">🌅</div>
+          <div class="schedule-info"><h4>Weekend</h4><p>Saturday – Sunday</p></div>
+          <div class="schedule-time">1 PM – 8 PM</div>
+        </div>
+        <div class="schedule-card">
+          <div class="schedule-dot" style="background:rgba(122,158,126,0.1);">🔒</div>
+          <div class="schedule-info"><h4>100% Private &amp; Confidential</h4><p>Conducted online via video call</p></div>
+        </div>
+      </div>
+      <div class="process-steps">
+        <h4>How it works</h4>
+        <div class="step"><div class="step-num">1</div><p><strong>Fill the form</strong> on the right with your details and topic.</p></div>
+        <div class="step"><div class="step-num">2</div><p><strong>Click "Book via WhatsApp"</strong> — your message will be pre-filled automatically.</p></div>
+        <div class="step"><div class="step-num">3</div><p><strong>Confirm your time slot</strong> directly with Elche via WhatsApp chat.</p></div>
+        <div class="step"><div class="step-num">4</div><p><strong>Join your private session</strong> at the agreed time via video call link.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="nameInput" placeholder="e.g. Budi Santoso" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" id="ageInput" placeholder="10–18" min="10" max="18" />
+        </div>
+        <div class="form-group">
+          <label>Day Preference</label>
+          <select id="dayInput">
+            <option value="">Select...</option>
+            <option>Weekday (Mon–Fri)</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Session Focus</label>
+        <select id="topicInput">
+          <option value="">Select a topic...</option>
+          <option>Academic Challenges</option>
+          <option>Personality Development</option>
+          <option>Social Skills &amp; Friendships</option>
+          <option>Career Counseling</option>
+          <option>Parent Consultation</option>
+          <option>Multiple Topics / Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Brief Message (optional)</label>
+        <textarea id="messageInput" placeholder="Tell me a little about what you'd like to discuss..."></textarea>
+      </div>
+      <a href="#" class="wa-btn" onclick="openWhatsApp(event)">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book via WhatsApp
+      </a>
+      <p style="text-align:center;font-size:0.78rem;color:var(--muted);margin-top:12px;">Filling the form above will pre-fill your WhatsApp message.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Elche Fintari</div>
+  <p>Youth Counselor · Ages 10–18 · Online</p>
+  <p style="margin-top:8px;"><a href="https://wa.me/6285242472187">📱 +62 852-4247-2187</a></p>
+  <p style="margin-top:16px;font-size:0.75rem;opacity:0.5;">All sessions are strictly confidential. Information shared in counseling is kept private.</p>
+</footer>
+
+<script>
+// Tab switching — robust, works on mobile touch
+document.querySelectorAll('.topic-tab').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var id = btn.getAttribute('data-tab');
+    document.querySelectorAll('.topic-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.topic-panel').forEach(function(p){ p.classList.remove('active'); });
+    var panel = document.getElementById('panel-' + id);
+    if (panel) panel.classList.add('active');
+    btn.classList.add('active');
+  });
+  // also handle touchend for faster mobile response
+  btn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    btn.click();
+  });
+});
+
+function openWhatsApp(e) {
+  e.preventDefault();
+  const name = document.getElementById('nameInput').value.trim();
+  const age = document.getElementById('ageInput').value.trim();
+  const day = document.getElementById('dayInput').value;
+  const topic = document.getElementById('topicInput').value;
+  const msg = document.getElementById('messageInput').value.trim();
+  let text = 'Hello Elche Fintari! I would like to book a counseling session.\n\n';
+  if (name) text += `👤 Name: ${name}\n`;
+  if (age) text += `🎂 Age: ${age}\n`;
+  if (day) text += `📅 Preferred Day: ${day}\n`;
+  if (topic) text += `🎯 Session Focus: ${topic}\n`;
+  if (msg) text += `\n💬 Message: ${msg}`;
+  if (!name && !topic) text = 'Hello Elche Fintari! I would like to book a counseling session. Could you please share your availability?';
+  window.open(`https://wa.me/6285242472187?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.service-card, .schedule-card, .step').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(18px)';
+  el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
